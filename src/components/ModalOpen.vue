@@ -33,9 +33,25 @@
                     </div>
                 </div>
                 <div v-else class="modal-body list-group">
-                    <div class="list-group-item align-items-center justidy-content-center d-flex gap-3 py-3" v-for="key in Object.keys(this.outputDeal())">
-                        <h6 class="mb-0">{{key}}</h6>
-                        <p class="mb-0">{{Math.abs(this.outputDeal()[key])}} руб.</p>
+                    <div class="list-group-item align-items-center justidy-content-center d-flex gap-3 py-3">
+                        <h6 class="mb-0">Комиссия компании:</h6>
+                        <p class="mb-0">{{Math.abs(outputDeal().companyCommission)}} руб.</p>
+                    </div>
+                    <div class="list-group-item align-items-center justidy-content-center d-flex gap-3 py-3">
+                        <h6 class="mb-0">Комиссия покупателя:</h6>
+                        <p class="mb-0">{{Math.abs(outputDeal().buyerCommission)}} руб.</p>
+                    </div>
+                    <div class="list-group-item align-items-center justidy-content-center d-flex gap-3 py-3">
+                        <h6 class="mb-0">Комиссия агента продавца:</h6>
+                        <p class="mb-0">{{Math.abs(outputDeal().sellerAgentCommission)}} руб.</p>
+                    </div>
+                    <div class="list-group-item align-items-center justidy-content-center d-flex gap-3 py-3">
+                        <h6 class="mb-0">Комиссия агента покупателя:</h6>
+                        <p class="mb-0">{{Math.abs(outputDeal().buyerAgentCommission)}} руб.</p>
+                    </div>
+                    <div class="list-group-item align-items-center justidy-content-center d-flex gap-3 py-3">
+                        <h6 class="mb-0">Выплаты компании:</h6>
+                        <p class="mb-0">{{Math.abs(outputDeal().companyDeductions)}} руб.</p>
                     </div>
                 </div>
                 </div>
