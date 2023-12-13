@@ -3,11 +3,11 @@ export default function calculateCommission(propertyType, propertyCost) {
     let sellerAgentCommission = 0;
     let buyerAgentCommission = 0;
   
-    if (propertyType === 'apartment') {
+    if (propertyType === 'Квартира') {
       companyCommission = 36000 + (propertyCost * 0.01);
-    } else if (propertyType === 'land') {
+    } else if (propertyType === 'Земля') {
       companyCommission = 30000 + (propertyCost * 0.02);
-    } else if (propertyType === 'house') {
+    } else if (propertyType === 'Дом') {
       companyCommission = 30000 + (propertyCost * 0.01);
     }
   

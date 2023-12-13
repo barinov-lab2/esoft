@@ -34,9 +34,9 @@
                             </div>
                             <div class="form-floating mb-3">
                             <select id="type" v-model="type" class="form-select" aria-label="Тип объекта недвижимости">
-                                <option value="apartment" selected>Квартира</option>
-                                <option value="house">Дом</option>
-                                <option value="land">Земля</option>
+                                <option value="Квартира" selected>Квартира</option>
+                                <option value="Дом">Дом</option>
+                                <option value="Земля">Земля</option>
                             </select>
                             <label for="type">Тип объекта</label>
                             </div>

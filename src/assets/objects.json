@@ -1,6 +1,6 @@
 [
     {
-      "Type": "apartment",
+      "Type": "Квартира",
       "Id": 1,
       "Address_City": "Тюмень",
       "Address_Street": "Энергостроителей",
@@ -13,7 +13,7 @@
       "Floor": 3
     },
     {
-      "Type": "apartment",
+      "Type": "Квартира",
       "Id": 2,
       "Address_City": "Тюмень",
       "Address_Street": "Елизарова",
@@ -26,7 +26,7 @@
       "Floor": 5
     },
     {
-      "Type": "apartment",
+      "Type": "Квартира",
       "Id": 3,
       "Address_City": "Тюмень",
       "Address_Street": "Московский тракт",
@@ -39,7 +39,7 @@
       "Floor": 2
     },
     {
-      "Type": "apartment",
+      "Type": "Квартира",
       "Id": 4,
       "Address_City": "Тюмень",
       "Address_Street": "Широтная",
@@ -52,7 +52,7 @@
       "Floor": 7
     },
     {
-      "Type": "apartment",
+      "Type": "Квартира",
       "Id": 5,
       "Address_City": "Тюмень",
       "Address_Street": "Пролетарская",
@@ -65,7 +65,7 @@
       "Floor": 2
     },
     {
-      "Type": "apartment",
+      "Type": "Квартира",
       "Id": 6,
       "Address_City": "Тюмень",
       "Address_Street": "Тараскульская",
@@ -78,7 +78,7 @@
       "Floor": 1
     },
     {
-      "Type": "apartment",
+      "Type": "Квартира",
       "Id": 7,
       "Address_City": "Тюмень",
       "Address_Street": "Парфенова",
@@ -91,7 +91,7 @@
       "Floor": 5
     },
     {
-      "Type": "apartment",
+      "Type": "Квартира",
       "Id": 8,
       "Address_City": "Тюмень",
       "Address_Street": "Республики",
@@ -104,7 +104,7 @@
       "Floor": 1
     },
     {
-        "Type": "house",
+        "Type": "Дом",
       "Id": 9,
         "Address_City": "Тюмень",
         "Address_Street": "1-й Заречный",
@@ -116,7 +116,7 @@
         "TotalArea": 84.4
       },
       {
-        "Type": "house",
+        "Type": "Дом",
       "Id": 10,
         "Address_City": "Тюмень",
         "Address_Street": "Ялyтopoвcкий тpaкт",
@@ -128,7 +128,7 @@
         "TotalArea": 130
       },
       {
-        "Type": "house",
+        "Type": "Дом",
       "Id": 11,
         "Address_City": "Тюмень",
         "Address_Street": "Березняковский п",
@@ -140,7 +140,7 @@
         "TotalArea": 120
       },
       {
-        "Type": "land",
+        "Type": "Земля",
       "Id": 12,
         "Address_City": "Тюмень",
         "Address_Street": "Луговое",
@@ -151,7 +151,7 @@
         "TotalArea": 20.3
       },
       {
-        "Type": "land",
+        "Type": "Земля",
       "Id": 13,
         "Address_City": "Тюмень",
         "Address_Street": "Алексеевский хутор",
@@ -162,7 +162,7 @@
         "TotalArea": 12.45
       },
       {
-        "Type": "land",
+        "Type": "Земля",
       "Id": 14,
         "Address_City": "Тюмень",
         "Address_Street": "Суходольский мкр",
