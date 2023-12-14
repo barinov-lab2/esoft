@@ -8,7 +8,7 @@
                         aria-label="Search">
                 </form>
                 <button type="button" @click="showModal = true"
-                    class="d-inline-flex align-items-center btn btn-primary px-4 rounded-pill" data-bs-toggle="modal"
+                    class="d-inline-flex align-items-center btn btn-primary px-4 nav-pills" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
                     Добавить клиента
                 </button>
@@ -36,10 +36,10 @@
                         <label for="Email">Email</label>
                     </div>
                     <div class="form-floating col-md-4 align-self-end d-flex justify-content-end">
-                        <button @click="cancelChanges" class="w-40 mx-2 btn btn-secondary rounded-pill">
+                        <button @click="cancelChanges" class="w-40 mx-2 btn btn-secondary nav-pills">
                             Отменить изменения
                         </button>
-                        <button class="w-40 mx-2 btn btn-primary rounded-pill" @click="saveChanges(editId)"
+                        <button class="w-40 mx-2 btn btn-primary nav-pills" @click="saveChanges(editId)"
                             :disabled="!isValidForm">Сохранить изменения
                         </button>
                     </div>
@@ -79,13 +79,13 @@
                         </td>
                         <td>
                             <div class="btn-group row " >
-                                <button style="width:38px; height: 38px;" class="rounded-circle p-2 lh-1 btn btn-outline-dark" @click="openModal = client.Id">
+                                <button style="width:38px; height: 38px;" class="rounded-square p-2 lh-1 btn btn-outline-dark" @click="openModal = client.Id">
                                     <i class="bi-box-arrow-up-right"></i>
                                 </button>
-                                <button style="width:38px; height: 38px;" class="mx-2 rounded-circle p-2 lh-1 btn btn-outline-primary" @click="editById(client.Id, client)">
+                                <button style="width:38px; height: 38px;" class="mx-2 rounded-square p-2 lh-1 btn btn-outline-primary" @click="editById(client.Id, client)">
                                     <i class="bi-pencil-square"></i>
                                 </button>
-                                <button style="width:38px; height: 38px;" class="rounded-circle p-2 lh-1 btn btn-danger"
+                                <button style="width:38px; height: 38px;" class="rounded-square p-2 lh-1 btn btn-danger"
                                     @click="deleteModal = client.Id"
                                     :disabled="checkId(client.Id, this.supplies) || checkId(client.Id, this.demands)">
                                     <i class="bi-trash"></i>
@@ -144,13 +144,18 @@ export default {
         },
         filteredClients() {
             if (this.search !== '') {
-                return useClientsStore().clients.filter(client => {
-                    const name = `${client.FirstName} ${client.MiddleName} ${client.LastName}`
-                    const searchWords = this.search
-                    return levenshteinDistance(name, searchWords) <= 3
-                })
+              const searchWords = this.search.toLowerCase().split(' ');
+              return useClientsStore().clients.filter(client => {
+                const name = client.FirstName || client.MiddleName || client.LastName.toLowerCase(); 
+                for (const word of searchWords) {
+                  if (levenshteinDistance(name, word) <= 3) {
+                    return true;
+                  }
+                }
+                return false;
+              });
             }
-            return useClientsStore().clients
+            return useClientsStore().clients;
         }
     },
     methods: {

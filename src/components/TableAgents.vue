@@ -7,7 +7,7 @@
                     <input v-model="search" type="search" class="form-control" placeholder="Поиск по агентам" aria-label="Search">
                 </form>
                 <button type="button" @click="showModal = true"
-                    class="d-inline-flex align-items-center btn btn-primary px-4 rounded-pill" data-bs-toggle="modal"
+                    class="d-inline-flex align-items-center btn btn-primary px-4 nav-pills" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
                     Добавить агента
                 </button>
@@ -31,10 +31,10 @@
                         <label for="Phone">Доля от комиссии</label>
                     </div>
                     <div class="form-floating col-md-4 align-self-end d-flex justify-content-end">
-                        <button @click="cancelChanges" class="w-40 mx-2 btn btn-secondary rounded-pill">
+                        <button @click="cancelChanges" class="w-40 mx-2 btn btn-secondary nav-pills">
                             Отменить изменения
                         </button>
-                        <button class="w-40 mx-2 btn btn-primary rounded-pill" @click="saveChanges(editId)"
+                        <button class="w-40 mx-2 btn btn-primary nav-pills" @click="saveChanges(editId)"
                             :disabled="!isValidForm">Сохранить изменения</button>
                     </div>
                 </div>
@@ -69,13 +69,13 @@
                         </td>
                         <td class="table__item px-3">
                             <div class="btn-group row " >
-                                <button style="width:38px; height: 38px;" class="rounded-circle p-2 lh-1 btn btn-outline-dark" @click="openModal = agent.Id">
+                                <button style="width:38px; height: 38px;" class="rounded-square p-2 lh-1 btn btn-outline-dark" @click="openModal = agent.Id">
                                     <i class="bi-box-arrow-up-right"></i>
                                 </button>
-                                <button style="width:38px; height: 38px;" class="mx-2 rounded-circle p-2 lh-1 btn btn-outline-primary" @click="editById(agent.Id, agent)">
+                                <button style="width:38px; height: 38px;" class="mx-2 rounded-square p-2 lh-1 btn btn-outline-primary" @click="editById(agent.Id, agent)">
                                     <i class="bi-pencil-square"></i>
                                 </button>
-                                <button style="width:38px; height: 38px;" class="rounded-circle p-2 lh-1 btn btn-danger"
+                                <button style="width:38px; height: 38px;" class="rounded-square p-2 lh-1 btn btn-danger"
                                     @click="deleteModal = agent.Id"
                                     :disabled="checkId(agent.Id, this.supplies) || checkId(agent.Id, this.demands)">
                                     <i class="bi-trash"></i>

@@ -8,7 +8,7 @@
                         aria-label="Search">
                 </form>
                 <button type="button" @click="showModal = true"
-                    class="d-inline-flex align-items-center btn btn-primary px-4 rounded-pill" data-bs-toggle="modal"
+                    class="d-inline-flex align-items-center btn btn-primary px-4 nav-pills" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
                     Добавить объект
                 </button>
@@ -70,10 +70,10 @@
                         <label for="TotalArea">Площадь</label>
                     </div>
                     <div class="modal-footer form-group col-md-4">
-                        <button @click="cancelChanges" class="w-40 mx-2 btn btn-secondary rounded-pill">
+                        <button @click="cancelChanges" class="w-40 mx-2 btn btn-secondary nav-pills">
                             Отменить изменения
                         </button>
-                        <button class="w-40 mx-2 btn btn-primary rounded-pill" @click="saveChanges(editId)"
+                        <button class="w-40 mx-2 btn btn-primary nav-pills" @click="saveChanges(editId)"
                             :disabled="!isValidForm">Сохранить изменения
                         </button>
                     </div>
@@ -106,7 +106,7 @@
                     <label for="inputDistrict">Фильтрация по району</label>
                 </div>
             </form>
-            <table class="table table-sm table-striped shadow-sm">
+            <table class="table table-sm table-striped shadow-sm mt-5">
                 <thead>
                     <tr>
                         <th scope="col" class="table__item">id</th>
@@ -161,11 +161,11 @@
                         <td>
                             <div class="btn-group row ">
                                 <button style="width:38px; height: 38px;"
-                                    class="mx-2 rounded-circle p-2 lh-1 btn btn-outline-primary"
+                                    class="mx-2 rounded-square p-2 lh-1 btn btn-outline-primary"
                                     @click="editById(object.Id, object)">
                                     <i class="bi-pencil-square"></i>
                                 </button>
-                                <button style="width:38px; height: 38px;" class="rounded-circle p-2 lh-1 btn btn-danger"
+                                <button style="width:38px; height: 38px;" class="rounded-square p-2 lh-1 btn btn-danger"
                                     @click="deleteModal = object.Id" :disabled="checkId(object.Id, this.supplies)">
                                     <i class="bi-trash"></i>
                                 </button>

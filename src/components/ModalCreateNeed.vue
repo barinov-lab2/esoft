@@ -88,10 +88,10 @@
                             </div>
                         </div>
                         <div class="modal-footer form-group">
-                            <button class="w-40 mb-2 btn btn-secondary rounded-pill" @click="$emit('close')">
+                            <button class="w-40 mb-2 btn btn-secondary nav-pills" @click="$emit('close')">
                                 Отмена
                             </button>
-                            <button class="w-40 mb-2 btn btn-primary rounded-pill" @submit="this.onSubmit" :disabled="!isValidForm">Добавить потребность</button>
+                            <button class="w-40 mb-2 btn btn-primary nav-pills" @submit="this.onSubmit" :disabled="!isValidForm">Добавить потребность</button>
                         </div>
                     </form>
             </div>
