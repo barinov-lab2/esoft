@@ -3,15 +3,15 @@
         <div class="clients__wrapper p-4 table-responsive small">
             <div class="table-title d-flex justify-content-between mb-3">
                 <h3 class="d-inline-flex">Таблица недвижимости</h3>
-                <form class="w-50 me-3" role="search">
-                    <input v-model="search" type="search" class="form-control" placeholder="Поиск по объектам недвижимости"
-                        aria-label="Search">
-                </form>
                 <button type="button" @click="showModal = true"
                     class="d-inline-flex align-items-center btn btn-primary px-4 nav-pills" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
                     Добавить объект
                 </button>
+                <form class="w-50 me-3" role="search">
+                    <input v-model="search" type="search" class="form-control" placeholder="Поиск по объектам недвижимости"
+                        aria-label="Search">
+                </form>
             </div>
             <form v-if="editId !== -1" @submit.prevent="onSubmit" class="p-2 bg-info-subtle">
                 <div class="modal-body row g-2">

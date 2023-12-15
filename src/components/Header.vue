@@ -10,7 +10,7 @@
         <li class="nav-item"><router-link to="/objects" class="nav-link" :class="{'active': this.$route.path=='/objects'}">Объекты недвижимости</router-link></li>
         <li class="nav-item"><router-link to="/offers" class="nav-link" :class="{'active': this.$route.path=='/offers'}">Предложения и потребности</router-link></li>
         <li class="nav-item"><router-link to="/deals" class="nav-link" :class="{'active': this.$route.path=='/deals'}">Сделки</router-link></li>
-        <li class="nav-item"><router-link to="/mobile" class="nav-link" :class="{'active': this.$route.path=='/mobile'}">Мобильное приложение</router-link></li>
+        <!-- <li class="nav-item"><router-link to="/mobile" class="nav-link" :class="{'active': this.$route.path=='/mobile'}">Мобильное приложение</router-link></li> -->
       </ul>
     </div>
   </header>
