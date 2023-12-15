@@ -13,72 +13,89 @@
                         aria-label="Search">
                 </form>
             </div>
-            <form v-if="editId !== -1" @submit.prevent="onSubmit" class="p-2 bg-info-subtle">
-                <div class="modal-body row g-2">
-                    <div class="form-floating mb-1 col-md-2">
-                        <input v-model="content.Address_City" class="form-control rounded-3" id="Address_City">
-                        <label for="Address_City">Город</label>
-                    </div>
-                    <div class="form-floating mb-1 col-md-3">
-                        <input v-model="content.Address_Street" id="Address_Street" class="form-control rounded-3">
-                        <label for="Address_Street">Улица</label>
-                    </div>
-                    <div class="form-floating mb-1 col-md-1">
-                        <input id="Address_House" v-model="content.Address_House" class="form-control rounded-3">
-                        <label for="Address_House">Дом</label>
-                    </div>
-                    <div class="form-floating mb-1 col-md-1">
-                        <input id="Address_Number" v-model="content.Address_Number" class="form-control rounded-3">
-                        <label for="Address_Number">Квартира</label>
-                    </div>
-                    <div class="form-floating mb-1 col-md-2">
-                        <input id="Coordinate_latitude" v-model="content.Coordinate_latitude"
-                            class="form-control rounded-3">
-                        <label for="Coordinate_latitude">Широта</label>
-                    </div>
-                    <div class="form-floating mb-1 col-md-2">
-                        <input id="Coordinate_longitude" v-model="content.Coordinate_longitude"
-                            class="form-control rounded-3">
-                        <label for="Coordinate_longitude">Долгота</label>
-                    </div>
-                    <div class="form-floating mb-1 col-md-2">
-                        <select id="type" v-model="content.type" class="form-select" aria-label="Тип объекта недвижимости">
-                            <option value="apartment" selected>Квартира</option>
-                            <option value="house">Дом</option>
-                            <option value="land">Земля</option>
-                        </select>
-                        <label for="type">Тип объекта</label>
-                    </div>
-                    <div v-if="content.type == 'apartment'" class="form-floating mb-1 col-md-2">
-                        <input id="Floor" v-model="content.Floor" class="form-control rounded-3">
-                        <label for="Floor">Этаж</label>
-                    </div>
-                    <div v-if="content.type == 'apartment'" class="form-floating mb-1 col-md-2">
-                        <input id="Rooms" v-model="content.Rooms" class="form-control rounded-3">
-                        <label for="Rooms">Количество комнат</label>
-                    </div>
-                    <div v-if="content.type == 'house'" class="form-floating mb-1 col-md-2">
-                        <input id="TotalFloors" v-model="content.TotalFloors" class="form-control rounded-3">
-                        <label for="TotalFloors">Этажность дома</label>
-                    </div>
-                    <div v-if="content.type == 'house'" class="form-floating mb-1 col-md-2">
-                        <input id="Rooms" v-model="content.Rooms" class="form-control rounded-3">
-                        <label for="Rooms">Количество комнат</label>
-                    </div>
-                    <div class="form-floating mb-1 col-md-2">
-                        <input id="TotalArea" v-model="content.TotalArea" class="form-control rounded-3">
-                        <label for="TotalArea">Площадь</label>
-                    </div>
-                    <div class="modal-footer form-group col-md-4">
-                        <button @click="cancelChanges" class="w-40 mx-2 btn btn-secondary nav-pills">
-                            Отменить изменения
-                        </button>
-                        <button class="w-40 mx-2 btn btn-primary nav-pills" @click="saveChanges(editId)"
-                            :disabled="!isValidForm">Сохранить изменения
-                        </button>
+            <div v-if="editId > -1" @submit.prevent="onSubmit" class="modal">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content p-2">
+                        <div class="modal-body row d-flex g-2">
+                            <div class="modal-header">
+                                <h5 class="modal-title fw-bold mb-0 fs-4">
+                                Редактировать предложение
+                                </h5>
+                                <button
+                                type="button"
+                                class="btn btn-close"
+                                @click="cancelChanges"
+                                ></button>
+                            </div>
+                            <form v-if="editId !== -1" @submit.prevent="onSubmit" class="p-2">
+                                <div class="modal-body row g-2">
+                                    <div class="form-floating mb-3">
+                                        <input v-model="content.Address_City" class="form-control rounded-3" id="Address_City">
+                                        <label for="Address_City">Город</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input v-model="content.Address_Street" id="Address_Street" class="form-control rounded-3">
+                                        <label for="Address_Street">Улица</label>
+                                    </div>
+                                    <div class="form-floating mb-3 col-md-6">
+                                        <input id="Address_House" v-model="content.Address_House" class="form-control rounded-3">
+                                        <label for="Address_House">Дом</label>
+                                    </div>
+                                    <div class="form-floating mb-3 col-md-6">
+                                        <input id="Address_Number" v-model="content.Address_Number" class="form-control rounded-3">
+                                        <label for="Address_Number">Квартира</label>
+                                    </div>
+                                    <div class="form-floating mb-3 col-md-6">
+                                        <input id="Coordinate_latitude" v-model="content.Coordinate_latitude" class="form-control rounded-3">
+                                        <label for="Coordinate_latitude">Широта</label>
+                                    </div>
+                                    <div class="form-floating mb-3 col-md-6">
+                                        <input id="Coordinate_longitude" v-model="content.Coordinate_longitude" class="form-control rounded-3">
+                                        <label for="Coordinate_longitude">Долгота</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <select id="type" v-model="content.type" class="form-select" aria-label="Тип объекта недвижимости">
+                                            <option value="apartment" selected>Квартира</option>
+                                            <option value="house">Дом</option>
+                                            <option value="land">Земля</option>
+                                        </select>
+                                        <label for="type">Тип объекта</label>
+                                    </div>
+                                    <div v-if="content.type=='apartment'" class="form-floating mb-3 col-md-6">
+                                        <input id="Floor" v-model="content.Floor" class="form-control rounded-3">
+                                        <label for="Floor">Этаж</label>
+                                    </div>
+                                    <div v-if="content.type=='apartment'" class="form-floating mb-3 col-md-6">
+                                        <input id="Rooms" v-model="content.Rooms" class="form-control rounded-3">
+                                        <label for="Rooms">Количество комнат</label>
+                                    </div>
+                                    <div v-if="content.type=='house'" class="form-floating mb-3 col-md-6">
+                                        <input id="TotalFloors" v-model="content.TotalFloors" class="form-control rounded-3">
+                                        <label for="TotalFloors">Этажность дома</label>
+                                    </div>
+                                    <div v-if="content.type=='house'" class="form-floating mb-3 col-md-6">
+                                        <input id="Rooms" v-model="content.Rooms" class="form-control rounded-3">
+                                        <label for="Rooms">Количество комнат</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input id="TotalArea" v-model="content.TotalArea" class="form-control rounded-3">
+                                        <label for="TotalArea">Площадь</label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer form-group">
+                                    <button @click="cancelChanges" class="w-40 mb-2 btn btn-secondary rounded-pill">
+                                        Отменить изменения
+                                    </button>
+                                    <button class="w-40 mb-2 btn rounded-pill btn-primary" @click="saveChanges(editId)"
+                                        :disabled="!isValidForm">Сохранить изменения
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </form>
+            </div>
+            
             <form class="row g-2" onsubmit="return false;">
                 <div class="form-floating col-md-6">
                     <select id="filterType" v-model="filterType" class="form-control">
@@ -238,27 +255,11 @@ export default {
                 }
             }
             if (this.search !== '') {
-                const searchWords = this.search.split(' ')
                 return arr.filter(object => {
-                    let address = false, street = false, house = false, number = false;
-                    for (let i = 0; i < searchWords.length; i++) {
-                        address = address || levenshteinDistance(object.Address_City, searchWords[i]) <= 3;
-                        street = street || levenshteinDistance(object.Address_Street, searchWords[i]) <= 3;
-                        house = house || levenshteinDistance(`${object.Address_House}`, searchWords[i]) <= 1;
-                        number = number || levenshteinDistance(`${object.Address_Number}`, searchWords[i]) <= 1;
-                    }
-                    switch (searchWords.length) {
-                        case 4:
-                            return address && street && house && number
-                        case 3:
-                            return (address && street && house) || (address && street && number) || (number && street && house)
-                                || (address && number && house)
-                        case 2:
-                            return (address && street) || (address && house) || (address && number) || (street && house) || (street && number)
-                                || (house && number)
-                        default:
-                            return address || street || house || number;
-                    }
+                    const text = `${object.Address_City} ${object.Address_Street}`
+                    const nums = `${object.Address_House} ${object.Address_Number}`
+                    const searchWords = this.search.split(' ')
+                    return (levenshteinDistance(text, searchWords[0] + ' ' + searchWords[1]) <= 3 & levenshteinDistance(nums, searchWords[2] + ' ' + searchWords[3]) <= 1)
                 })
             }
             return arr
