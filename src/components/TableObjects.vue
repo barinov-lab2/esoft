@@ -3,15 +3,15 @@
         <div class="clients__wrapper p-4 table-responsive small">
             <div class="table-title d-flex justify-content-between mb-3">
                 <h3 class="d-inline-flex">Таблица недвижимости</h3>
+                <button type="button" @click="showModal = true"
+                    class="d-inline-flex align-items-center btn btn-primary px-4 nav-pills" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Добавить объект
+                </button>
                 <form class="w-50 me-3" role="search">
                     <input v-model="search" type="search" class="form-control" placeholder="Поиск по объектам недвижимости"
                         aria-label="Search">
                 </form>
-                <button type="button" @click="showModal = true"
-                    class="d-inline-flex align-items-center btn btn-primary px-4 rounded-pill" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
-                    Добавить объект
-                </button>
             </div>
             <div v-if="editId > -1" @submit.prevent="onSubmit" class="modal">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -123,7 +123,7 @@
                     <label for="inputDistrict">Фильтрация по району</label>
                 </div>
             </form>
-            <table class="table table-sm table-striped shadow-sm">
+            <table class="table table-sm table-striped shadow-sm mt-5">
                 <thead>
                     <tr>
                         <th scope="col" class="table__item">id</th>
@@ -178,11 +178,11 @@
                         <td>
                             <div class="btn-group row ">
                                 <button style="width:38px; height: 38px;"
-                                    class="mx-2 rounded-circle p-2 lh-1 btn btn-outline-primary"
+                                    class="mx-2 rounded-square p-2 lh-1 btn btn-outline-primary"
                                     @click="editById(object.Id, object)">
                                     <i class="bi-pencil-square"></i>
                                 </button>
-                                <button style="width:38px; height: 38px;" class="rounded-circle p-2 lh-1 btn btn-danger"
+                                <button style="width:38px; height: 38px;" class="rounded-square p-2 lh-1 btn btn-danger"
                                     @click="deleteModal = object.Id" :disabled="checkId(object.Id, this.supplies)">
                                     <i class="bi-trash"></i>
                                 </button>

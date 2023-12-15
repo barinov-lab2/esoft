@@ -26,10 +26,10 @@
                             </div>
                         </div>
                         <div class="modal-footer form-group">
-                            <button class="w-40 mb-2 btn rounded-pill btn-secondary" @click="$emit('close')">
+                            <button class="w-40 mb-2 btn nav-pills btn-secondary" @click="$emit('close')">
                                 Отмена
                             </button>
-                            <button class="w-40 mb-2 btn rounded-pill btn-primary" @submit="this.onSubmit" :disabled="!isValidForm">Сохранить изменения</button>
+                            <button class="w-40 mb-2 btn nav-pills btn-primary" @submit="this.onSubmit" :disabled="!isValidForm">Сохранить изменения</button>
                         </div>
                     </form>
                 

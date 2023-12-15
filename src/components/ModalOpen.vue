@@ -13,7 +13,7 @@
                         <div v-for="item in listSupplies" :key="item.Id" href="#" class="card text-danger border-danger list-group-item list-group-item-action p-1" aria-current="true">
                             <div class="card-body">
                                 <h5 class="card-title m-0">Предложение ID {{item['Id']}}</h5>
-                                <p class="card-text m-0 badge bg-danger rounded-pill mb-2 mt-2" >Клиент #{{item['ClientId']}}, Риэлтор #{{item['AgentId']}}</p>          
+                                <p class="card-text m-0 badge bg-danger nav-pills mb-2 mt-2" >Клиент #{{item['ClientId']}}, Риэлтор #{{item['AgentId']}}</p>          
                                 <p class="card-text" v-if="item['Price']">Цена {{item['Price']}} руб.</p>
                               </div>
                         </div>
@@ -22,7 +22,7 @@
                         <div v-for="item in listDemands" :key="item.Id" href="#" class="card text-primary border-primary list-group-item list-group-item-action p-1" aria-current="true">
                             <div class="card-body">
                                 <h5 class="card-title m-0">Потребность ID {{item['Id']}}</h5>
-                                <p class="card-text m-0 badge bg-primary rounded-pill mt-2 mb-2" >Клиент #{{item['ClientId']}}, Риэлтор #{{item['AgentId']}}</p>          
+                                <p class="card-text m-0 badge bg-primary nav-pills mt-2 mb-2" >Клиент #{{item['ClientId']}}, Риэлтор #{{item['AgentId']}}</p>          
                                 <p class="card-text m-0" v-if="!!(item['Address_City']) + !!(item['Address_Street'])">Адрес: {{item['Address_City']}} {{item['Address_Street']}} {{item['Address_House']}} {{item['Address_Number']}}</p>
                                 <p class="card-text m-0" v-if="!!(item['MinPrice']) + !!(item['MaxPrice'])">Цена: {{item['MinPrice']?'от '+item['MinPrice']:item['MinPrice']}} {{item['MaxPrice']?'по '+item['MaxPrice']:item['MaxPrice']}}  руб.</p>
                                 <p class="card-text m-0" v-if="!!(item['MinArea']) + !!(item['MaxArea'])">Площадь: {{item['MinArea']?'от '+item['MinArea']:item['MinArea']}} {{item['MaxArea']?'по '+item['MaxArea']:item['MaxArea']}} м2</p>

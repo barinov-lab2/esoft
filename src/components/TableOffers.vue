@@ -6,7 +6,7 @@
         <button
           type="button"
           @click="showModal = true"
-          class="d-inline-flex align-items-center btn btn-primary px-4 rounded-pill"
+          class="d-inline-flex align-items-center btn btn-primary px-4 nav-pills"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >
@@ -101,12 +101,12 @@
               >
                 <button
                   @click="cancelChanges"
-                  class="w-30 mx-2 btn btn-secondary rounded-pill"
+                  class="w-30 mx-2 btn btn-secondary nav-pills"
                 >
                   Отменить изменения
                 </button>
                 <button
-                  class="w-30 mx-2 btn btn-primary rounded-pill"
+                  class="w-30 mx-2 btn btn-primary nav-pills"
                   @click="saveChanges(editId)"
                   :disabled="!isValidForm"
                 >
@@ -163,14 +163,14 @@
               <div class="btn-group row">
                 <button
                   style="width: 38px; height: 38px"
-                  class="mx-2 rounded-circle p-2 lh-1 btn btn-outline-primary"
+                  class="mx-2 rounded-square p-2 lh-1 btn btn-outline-primary"
                   @click="editById(supply.Id, supply)"
                 >
                   <i class="bi-pencil-square"></i>
                 </button>
                 <button
                   style="width: 38px; height: 38px"
-                  class="rounded-circle p-2 lh-1 btn btn-danger"
+                  class="rounded-square p-2 lh-1 btn btn-danger"
                   @click="deleteModal = supply.Id"
                 >
                   <i class="bi-trash"></i>

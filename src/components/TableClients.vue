@@ -3,15 +3,15 @@
         <div class="clients__wrapper p-4">
             <div class="table-title d-flex justify-content-between mb-3">
                 <h3 class="d-inline-flex">Таблица клиентов</h3>
+                <button type="button" @click="showModal = true"
+                    class="d-inline-flex align-items-center btn btn-primary px-4 nav-pills" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Добавить клиента
+                </button>
                 <form class="w-50 me-3" role="search">
                     <input v-model="search" type="search" class="form-control" placeholder="Поиск по клиентам"
                         aria-label="Search">
                 </form>
-                <button type="button" @click="showModal = true"
-                    class="d-inline-flex align-items-center btn btn-primary px-4 rounded-pill" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
-                    Добавить клиента
-                </button>
             </div>
             <form v-if="editId > -1" @submit.prevent="onSubmit">
                 <div class="modal-body row g-2">
@@ -36,10 +36,10 @@
                         <label for="Email">Email</label>
                     </div>
                     <div class="form-floating col-md-4 align-self-end d-flex justify-content-end">
-                        <button @click="cancelChanges" class="w-40 mx-2 btn btn-secondary rounded-pill">
+                        <button @click="cancelChanges" class="w-40 mx-2 btn btn-secondary nav-pills">
                             Отменить изменения
                         </button>
-                        <button class="w-40 mx-2 btn btn-primary rounded-pill" @click="saveChanges(editId)"
+                        <button class="w-40 mx-2 btn btn-primary nav-pills" @click="saveChanges(editId)"
                             :disabled="!isValidForm">Сохранить изменения
                         </button>
                     </div>
@@ -79,13 +79,13 @@
                         </td>
                         <td>
                             <div class="btn-group row " >
-                                <button style="width:38px; height: 38px;" class="rounded-circle p-2 lh-1 btn btn-outline-dark" @click="openModal = client.Id">
+                                <button style="width:38px; height: 38px;" class="rounded-square p-2 lh-1 btn btn-outline-dark" @click="openModal = client.Id">
                                     <i class="bi-box-arrow-up-right"></i>
                                 </button>
-                                <button style="width:38px; height: 38px;" class="mx-2 rounded-circle p-2 lh-1 btn btn-outline-primary" @click="editById(client.Id, client)">
+                                <button style="width:38px; height: 38px;" class="mx-2 rounded-square p-2 lh-1 btn btn-outline-primary" @click="editById(client.Id, client)">
                                     <i class="bi-pencil-square"></i>
                                 </button>
-                                <button style="width:38px; height: 38px;" class="rounded-circle p-2 lh-1 btn btn-danger"
+                                <button style="width:38px; height: 38px;" class="rounded-square p-2 lh-1 btn btn-danger"
                                     @click="deleteModal = client.Id"
                                     :disabled="checkId(client.Id, this.supplies) || checkId(client.Id, this.demands)">
                                     <i class="bi-trash"></i>
@@ -144,16 +144,26 @@ export default {
         },
         filteredClients() {
             if (this.search !== '') {
-                return useClientsStore().clients.filter(client => {
-                    const name = `${client.FirstName} ${client.MiddleName} ${client.LastName}`
-                    const searchWords = this.search
-                    return levenshteinDistance(name, searchWords) <= 3
-                })
+              const searchWords = this.search.toLowerCase().split(' ');
+              return useClientsStore().clients.filter(client => {
+                const fullName = `${client.FirstName} ${client.MiddleName} ${client.LastName}`.toLowerCase();
+            
+                // Check if any part of the full name is a fuzzy match for any search word
+                return searchWords.some(word =>
+                  this.isFuzzyMatch(client.FirstName.toLowerCase(), word) ||
+                  this.isFuzzyMatch(client.MiddleName.toLowerCase(), word) ||
+                  this.isFuzzyMatch(client.LastName.toLowerCase(), word)
+                );
+              });
             }
-            return useClientsStore().clients
+            return useClientsStore().clients;
         }
     },
     methods: {
+        isFuzzyMatch(str1, str2) {
+          const distance = levenshteinDistance(str1, str2);
+          return distance <= 3;
+        },
         removeById(id) {
             useClientsStore().removeClient(id);
         },
