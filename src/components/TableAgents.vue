@@ -129,23 +129,29 @@ export default {
     computed: {
         filteredAgents() {
             if (this.search !== '') {
-                return useAgentsStore().agents.filter(agent => {
-                    const name = `${agent.FirstName} ${agent.MiddleName} ${agent.LastName}`
-                    // const searchWords = this.search.split(' ')
-                    const searchWords = this.search
-                    // return searchWords.every(word => {
-                    //     return this.levenshteinDistance(name, word) <= 3
-                    // })
-                    return levenshteinDistance(name, searchWords) <= 3
-                })
+              const searchWords = this.search.toLowerCase().split(' ');
+              return useAgentsStore().agents.filter(agent => {
+                const fullName = `${agent.FirstName} ${agent.MiddleName} ${agent.LastName}`.toLowerCase();
+            
+                // Check if any part of the full name is a fuzzy match for any search word
+                return searchWords.some(word =>
+                  this.isFuzzyMatch(agent.FirstName.toLowerCase(), word) ||
+                  this.isFuzzyMatch(agent.MiddleName.toLowerCase(), word) ||
+                  this.isFuzzyMatch(agent.LastName.toLowerCase(), word)
+                );
+              });
             }
-            return useAgentsStore().agents
+            return useAgentsStore().agents;
         },
         isValidForm() {
             return !(!(this.content.FirstName))  & !(!(this.content.LastName)) & !(!(this.content.MiddleName))
         },
     },
     methods: {
+        isFuzzyMatch(str1, str2) {
+          const distance = levenshteinDistance(str1, str2);
+          return distance <= 3;
+        },
         removeById(id) {
             useAgentsStore().removeAgent(id);
         },

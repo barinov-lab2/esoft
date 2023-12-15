@@ -146,19 +146,24 @@ export default {
             if (this.search !== '') {
               const searchWords = this.search.toLowerCase().split(' ');
               return useClientsStore().clients.filter(client => {
-                const name = client.FirstName || client.MiddleName || client.LastName.toLowerCase(); 
-                for (const word of searchWords) {
-                  if (levenshteinDistance(name, word) <= 3) {
-                    return true;
-                  }
-                }
-                return false;
+                const fullName = `${client.FirstName} ${client.MiddleName} ${client.LastName}`.toLowerCase();
+            
+                // Check if any part of the full name is a fuzzy match for any search word
+                return searchWords.some(word =>
+                  this.isFuzzyMatch(client.FirstName.toLowerCase(), word) ||
+                  this.isFuzzyMatch(client.MiddleName.toLowerCase(), word) ||
+                  this.isFuzzyMatch(client.LastName.toLowerCase(), word)
+                );
               });
             }
             return useClientsStore().clients;
         }
     },
     methods: {
+        isFuzzyMatch(str1, str2) {
+          const distance = levenshteinDistance(str1, str2);
+          return distance <= 3;
+        },
         removeById(id) {
             useClientsStore().removeClient(id);
         },
