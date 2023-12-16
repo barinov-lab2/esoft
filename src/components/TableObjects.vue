@@ -255,11 +255,27 @@ export default {
                 }
             }
             if (this.search !== '') {
+                const searchWords = this.search.split(' ')
                 return arr.filter(object => {
-                    const text = `${object.Address_City} ${object.Address_Street}`
-                    const nums = `${object.Address_House} ${object.Address_Number}`
-                    const searchWords = this.search.split(' ')
-                    return (levenshteinDistance(text, searchWords[0] + ' ' + searchWords[1]) <= 3 & levenshteinDistance(nums, searchWords[2] + ' ' + searchWords[3]) <= 1)
+                    let address = false, street = false, house = false, number = false;
+                    for (let i = 0; i < searchWords.length; i++) {
+                        address = address || levenshteinDistance(object.Address_City, searchWords[i]) <= 3;
+                        street = street || levenshteinDistance(object.Address_Street, searchWords[i]) <= 3;
+                        house = house || levenshteinDistance(`${object.Address_House}`, searchWords[i]) <= 1;
+                        number = number || levenshteinDistance(`${object.Address_Number}`, searchWords[i]) <= 1;
+                    }
+                    switch (searchWords.length) {
+                        case 4:
+                            return address && street && house && number
+                        case 3:
+                            return (address && street && house) || (address && street && number) || (number && street && house)
+                                || (address && number && house)
+                        case 2:
+                            return (address && street) || (address && house) || (address && number) || (street && house) || (street && number)
+                                || (house && number)
+                        default:
+                            return address || street || house || number;
+                    }
                 })
             }
             return arr
