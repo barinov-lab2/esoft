@@ -20,7 +20,7 @@
                                 <input id="Address_House" v-model="Address_House" class="form-control rounded-3">
                                 <label for="Address_House">Дом</label>
                             </div>
-                            <div class="form-floating mb-3 col-md-6">
+                            <div v-if="type=='Квартира'" class="form-floating mb-3 col-md-6">
                                 <input id="Address_Number" v-model="Address_Number" class="form-control rounded-3">
                                 <label for="Address_Number">Квартира</label>
                             </div>
@@ -40,19 +40,19 @@
                             </select>
                             <label for="type">Тип объекта</label>
                             </div>
-                            <div v-if="type=='apartment'" class="form-floating mb-3 col-md-6">
+                            <div v-if="type=='Квартира'" class="form-floating mb-3 col-md-6">
                                 <input id="Floor" v-model="Floor" class="form-control rounded-3">
                                 <label for="Floor">Этаж</label>
                             </div>
-                            <div v-if="type=='apartment'" class="form-floating mb-3 col-md-6">
+                            <div v-if="type=='Квартира'" class="form-floating mb-3 col-md-6">
                                 <input id="Rooms" v-model="Rooms" class="form-control rounded-3">
                                 <label for="Rooms">Количество комнат</label>
                             </div>
-                            <div v-if="type=='house'" class="form-floating mb-3 col-md-6">
+                            <div v-if="type=='Дом'" class="form-floating mb-3 col-md-6">
                                 <input id="TotalFloors" v-model="TotalFloors" class="form-control rounded-3">
                                 <label for="TotalFloors">Этажность дома</label>
                             </div>
-                            <div v-if="type=='house'" class="form-floating mb-3 col-md-6">
+                            <div v-if="type=='Дом'" class="form-floating mb-3 col-md-6">
                                 <input id="Rooms" v-model="Rooms" class="form-control rounded-3">
                                 <label for="Rooms">Количество комнат</label>
                             </div>
@@ -80,7 +80,7 @@ export default {
     emits: ['close'],
     data() {
         return {
-            type: 'apartment',
+            type: 'Квартира',
             Address_City: '',
             Address_Street: '',
             Address_House: '',
@@ -111,8 +111,8 @@ export default {
         TotalArea: this.TotalArea,
         Id: useObjectsStore().objects[useObjectsStore().objects.length - 1].Id + 1
       }
-      if (this.type=='apartment') {object.Floor = this.Floor; object.Rooms = this.Rooms}
-      else if (this.type=='house') {object.TotalFloors = this.TotalFloors};
+      if (this.type=='Квартира') {object.Floor = this.Floor; object.Rooms = this.Rooms}
+      else if (this.type=='Дом') {object.TotalFloors = this.TotalFloors};
       useObjectsStore().addObject(object);
       console.log(object)
       this.$emit('close')

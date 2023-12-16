@@ -55,25 +55,25 @@
                                     </div>
                                     <div class="form-floating mb-3">
                                         <select id="type" v-model="content.type" class="form-select" aria-label="Тип объекта недвижимости">
-                                            <option value="apartment" selected>Квартира</option>
-                                            <option value="house">Дом</option>
-                                            <option value="land">Земля</option>
+                                            <option value="Квартира" selected>Квартира</option>
+                                            <option value="Дом">Дом</option>
+                                            <option value="Земля">Земля</option>
                                         </select>
                                         <label for="type">Тип объекта</label>
                                     </div>
-                                    <div v-if="content.type=='apartment'" class="form-floating mb-3 col-md-6">
+                                    <div v-if="content.type=='Квартира'" class="form-floating mb-3 col-md-6">
                                         <input id="Floor" v-model="content.Floor" class="form-control rounded-3">
                                         <label for="Floor">Этаж</label>
                                     </div>
-                                    <div v-if="content.type=='apartment'" class="form-floating mb-3 col-md-6">
+                                    <div v-if="content.type=='Квартира'" class="form-floating mb-3 col-md-6">
                                         <input id="Rooms" v-model="content.Rooms" class="form-control rounded-3">
                                         <label for="Rooms">Количество комнат</label>
                                     </div>
-                                    <div v-if="content.type=='house'" class="form-floating mb-3 col-md-6">
+                                    <div v-if="content.type=='Дом'" class="form-floating mb-3 col-md-6">
                                         <input id="TotalFloors" v-model="content.TotalFloors" class="form-control rounded-3">
                                         <label for="TotalFloors">Этажность дома</label>
                                     </div>
-                                    <div v-if="content.type=='house'" class="form-floating mb-3 col-md-6">
+                                    <div v-if="content.type=='Дом'" class="form-floating mb-3 col-md-6">
                                         <input id="Rooms" v-model="content.Rooms" class="form-control rounded-3">
                                         <label for="Rooms">Количество комнат</label>
                                     </div>
@@ -102,13 +102,13 @@
                         <option selected value="all">
                             Все типы
                         </option>
-                        <option value="apartment">
+                        <option value="Квартира">
                             Квартира
                         </option>
-                        <option value="house">
+                        <option value="Дом">
                             Дом
                         </option>
-                        <option value="land">
+                        <option value="Квартира">
                             Земля
                         </option>
                     </select>
@@ -226,7 +226,7 @@ export default {
             district: '',
             supplies: useSuppliesStore().supplies,
             content: {
-                type: 'apartment',
+                type: 'Квартира',
                 Address_City: '',
                 Address_Street: '',
                 Address_House: '',
@@ -312,12 +312,12 @@ export default {
             useObjectsStore().changeObject(id, this.content)
         },
         filterByType(arr) {
-            if (this.filterType === 'apartment') {
+            if (this.filterType === 'Квартира') {
                 console.log(123)
                 return arr.filter(item => item.Rooms || item.Floor)
-            } else if (this.filterType === 'house') {
+            } else if (this.filterType === 'Дом') {
                 return arr.filter(item => item.TotalFloors && !item.Rooms && !item.Floor)
-            } else if (this.filterType === 'land') {
+            } else if (this.filterType === 'Квартира') {
                 return arr.filter(item => !item.Rooms && !item.Floor && !item.TotalFloors)
             } else {
                 return arr

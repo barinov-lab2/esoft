@@ -88,7 +88,8 @@
                 />
                 <label for="Address_House">Дом</label>
               </div>
-              <div class="form-floating mb-3">
+              <div class="form-floating mb-3"
+              v-if="content.Type == 'Квартира'">
                 <input
                   id="Address_Number"
                   v-model="content.Address_Number"
@@ -110,7 +111,7 @@
                 <label for="type">Тип объекта недвижимости</label>
               </div>
               <div
-                v-if="content.Type == 'apartment' || content.Type == 'house'"
+                v-if="content.Type == 'Квартира' || content.Type == 'Дом'"
                 class="form-floating mb-3"
               >
                 <input
@@ -121,7 +122,7 @@
                 <label for="MinRooms">Минимальное кол-во комнат</label>
               </div>
               <div
-                v-if="content.Type == 'apartment' || content.Type == 'house'"
+                v-if="content.Type == 'Квартира' || content.Type == 'Дом'"
                 class="form-floating mb-3"
               >
                 <input
@@ -132,7 +133,7 @@
                 <label for="MaxRooms">Максимальное кол-во комнат</label>
               </div>
               <div
-                v-if="content.Type == 'apartment'"
+                v-if="content.Type == 'Квартира'"
                 class="form-floating mb-3"
               >
                 <input
@@ -143,7 +144,7 @@
                 <label for="MinFloors">Минимальный этаж</label>
               </div>
               <div
-                v-if="content.Type == 'apartment'"
+                v-if="content.Type == 'Квартира'"
                 class="form-floating mb-3"
               >
                 <input
@@ -154,7 +155,7 @@
                 <label for="MaxFloors">Максимальный этаж</label>
               </div>
               <div
-                v-if="content.Type == 'house'"
+                v-if="content.Type == 'Дом'"
                 class="form-floating mb-3"
               >
                 <input
@@ -165,7 +166,7 @@
                 <label for="MinFloors">Минимальная этажность дома</label>
               </div>
               <div
-                v-if="content.Type == 'house'"
+                v-if="content.Type == 'Дом'"
                 class="form-floating mb-3"
               >
                 <input
@@ -454,10 +455,10 @@ export default {
       this.content.MinPrice = obj.MinPrice;
       this.content.MaxPrice = obj.MaxPrice;
       this.content.Id = obj.Id;
-      obj.Type != "apartment"
+      obj.Type != "Квартира"
         ? (this.content.MinFloors = obj.MinFloors)
         : (this.content.MinFloors = obj.MinFloor);
-      obj.Type != "apartment"
+      obj.Type != "Квартира"
         ? (this.content.MaxFloors = obj.MaxFloors)
         : (this.content.MaxFloors = obj.MaxFloor);
       this.content.MinRooms = obj.MinRooms;

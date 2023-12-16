@@ -32,7 +32,7 @@
                                 <input id="Address_House" v-model="Address_House" class="form-control rounded-3">
                                 <label for="Address_House">Дом</label>
                             </div>
-                            <div class="form-floating mb-3 col-md-6">
+                            <div v-if="type=='Квартира'" class="form-floating mb-3 col-md-6">
                                 <input id="Address_Number" v-model="Address_Number" class="form-control rounded-3">
                                 <label for="Address_Number">Квартира</label>
                             </div>
@@ -44,27 +44,27 @@
                                 </select>
                                 <label for="type">Тип объекта недвижимости</label>
                             </div>
-                            <div v-if="type=='apartment' || type=='house'" class="form-floating mb-3 col-md-6">
+                            <div v-if="type=='Квартира' || type=='Дом'" class="form-floating mb-3 col-md-6">
                                 <input id="MinRooms" v-model="MinRooms" class="form-control rounded-3">
                                 <label for="MinRooms">Минимальное кол-во комнат</label>
                             </div>
-                            <div v-if="type=='apartment' || type=='house'" class="form-floating mb-3 col-md-6">
+                            <div v-if="type=='Квартира' || type=='Дом'" class="form-floating mb-3 col-md-6">
                                 <input id="MaxRooms" v-model="MaxRooms" class="form-control rounded-3">
                                 <label for="MaxRooms">Максимальное кол-во комнат</label>
                             </div>
-                            <div v-if="type=='apartment'" class="form-floating mb-3 col-md-6">
+                            <div v-if="type=='Квартира'" class="form-floating mb-3 col-md-6">
                                 <input id="MinFloors" v-model="MinFloors" class="form-control rounded-3">
                                 <label for="MinFloors">Минимальный этаж</label>
                             </div>
-                            <div v-if="type=='apartment'" class="form-floating mb-3 col-md-6">
+                            <div v-if="type=='Квартира'" class="form-floating mb-3 col-md-6">
                                 <input id="MaxFloors" v-model="MaxFloors" class="form-control rounded-3">
                                 <label for="MaxFloors">Максимальный этаж</label>
                             </div>
-                            <div v-if="type=='house'" class="form-floating mb-3 col-md-6">
+                            <div v-if="type=='Дом'" class="form-floating mb-3 col-md-6">
                                 <input id="MinFloors" v-model="MinFloors" class="form-control rounded-3">
                                 <label for="MinFloors">Минимальная этажность дома</label>
                             </div>
-                            <div v-if="type=='house'" class="form-floating mb-3 col-md-6">
+                            <div v-if="type=='Дом'" class="form-floating mb-3 col-md-6">
                                 <input id="MaxFloors" v-model="MaxFloors" class="form-control rounded-3">
                                 <label for="MaxFloors">Максимальная этажность дома</label>
                             </div>
@@ -108,7 +108,7 @@ export default {
     emits: ['close'],
     data() {
         return {
-            type: 'apartment',
+            type: 'Квартира',
             clients: useClientsStore().clients,
             agents: useAgentsStore().agents,
             ClientId: '',
@@ -146,7 +146,7 @@ export default {
         MaxArea: this.MaxArea,
         Id: useDemandsStore().demands[useDemandsStore().demands.length - 1].Id + 1
       }
-      if (this.type=='apartment' || this.type=='house') {
+      if (this.type=='Квартира' || this.type=='Дом') {
         demand.MinFloors = this.MinFloors;
         demand.MaxFloors = this.MaxFloors
         demand.MinRooms = this.MinRooms;
