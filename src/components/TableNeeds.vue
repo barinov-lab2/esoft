@@ -363,6 +363,9 @@
                   style="width: 38px; height: 38px"
                   class="rounded-square p-2 lh-1 btn btn-danger"
                   @click="deleteModal = demand.Id"
+                  :disabled="
+                    checkId(demand.Id, this.deals)
+                  "
                 >
                   <i class="bi-trash"></i>
                 </button>
@@ -386,6 +389,7 @@
 <script>
 import { useDemandsStore } from "../store/demands";
 import { useClientsStore } from "../store/clients";
+import { useDealsStore } from '../store/deals';
 import { useAgentsStore } from "../store/agents";
 
 import ModalCreateNeed from "../components/ModalCreateNeed.vue";
@@ -405,6 +409,7 @@ export default {
       id: "",
       filterType: "all",
       clients: useClientsStore().clients,
+      deals: useDealsStore().deals,
       agents: useAgentsStore().agents,
       content: {
         Type: "",
@@ -474,6 +479,14 @@ export default {
     cancelChanges(id) {
       this.editId = -1;
       useDemandsStore().fetchDemands();
+    },
+    checkId(id, array) {
+      for (let i = 0; i < array.length; i++) {
+        if (array[i].Demand_Id === id) {
+          return true;
+        }
+      }
+      return false;
     },
   },
 };
