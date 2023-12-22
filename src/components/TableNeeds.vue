@@ -363,6 +363,7 @@
                   style="width: 38px; height: 38px"
                   class="rounded-square p-2 lh-1 btn btn-danger"
                   @click="deleteModal = demand.Id"
+                  :disabled="!demandInDeal(demand.Id)"
                 >
                   <i class="bi-trash"></i>
                 </button>
@@ -384,6 +385,7 @@
 </template>
 
 <script>
+import { useDealsStore } from "../store/deals";
 import { useDemandsStore } from "../store/demands";
 import { useClientsStore } from "../store/clients";
 import { useAgentsStore } from "../store/agents";
@@ -475,6 +477,14 @@ export default {
       this.editId = -1;
       useDemandsStore().fetchDemands();
     },
+    demandInDeal(id) {
+      for (let i = 0; i < useDealsStore().deals.length; i++) {
+            if (useDealsStore().deals[i].Demand_Id === id) {
+                return false;
+            }
+        }
+        return true;
+    }
   },
 };
 </script>

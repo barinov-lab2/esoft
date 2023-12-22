@@ -172,6 +172,7 @@
                   style="width: 38px; height: 38px"
                   class="rounded-square p-2 lh-1 btn btn-danger"
                   @click="deleteModal = supply.Id"
+                  :disabled="!supplyInDeal(supply.Id)"
                 >
                   <i class="bi-trash"></i>
                 </button>
@@ -193,6 +194,7 @@
 </template>
 
 <script>
+import { useDealsStore } from "../store/deals";
 import { useSuppliesStore } from "../store/supplies";
 import { useObjectsStore } from "../store/objects";
 import { useClientsStore } from "../store/clients";
@@ -261,6 +263,15 @@ export default {
       this.editId = -1;
       useSuppliesStore().fetchSupplies();
     },
+
+    supplyInDeal(id) {
+      for (let i = 0; i < useDealsStore().deals.length; i++) {
+            if (useDealsStore().deals[i].Supply_Id === id) {
+                return false;
+            }
+        }
+        return true;
+    }
   },
 };
 </script>
